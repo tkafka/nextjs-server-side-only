@@ -1,0 +1,21 @@
+{
+	"name": "learn-starter",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"prettier:fix": "./node_modules/.bin/prettier --write './**/*.js' './**/*.json' './**/*.less' './**/*.pug'",
+		"prettier:check": "./node_modules/.bin/prettier --list-different './**/*.js' './**/*.json' './**/*.less' './**/*.pug'"
+	},
+	"dependencies": {
+		"next": "^11.0.0",
+		"react": "17.0.2",
+		"react-dom": "17.0.2",
+		"react-helmet": "^6.1.0"
+	},
+	"devDependencies": {
+		"prettier": "^2.4.1"
+	}
+}
