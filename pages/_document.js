@@ -22,8 +22,12 @@ export default class MyDocument extends Document {
 
 	// should render on <head>
 	get helmetHeadComponents() {
+		// this.props.helmet['link'].push({})
 		return Object.keys(this.props.helmet)
 			.filter((el) => el !== 'htmlAttributes' && el !== 'bodyAttributes')
+			.map((el) => {
+				return el
+			})
 			.map((el) => this.props.helmet[el].toComponent())
 	}
 
