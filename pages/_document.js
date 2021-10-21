@@ -1,5 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import { Helmet } from 'react-helmet'
+import { isdev } from '../lib/isdev'
 
 export default class MyDocument extends Document {
 	static async getInitialProps(...args) {
@@ -27,14 +28,26 @@ export default class MyDocument extends Document {
 	}
 
 	render() {
-		return (
-			<Html {...this.helmetHtmlAttrComponents}>
-				<Head>{this.helmetHeadComponents}</Head>
-				<body {...this.helmetBodyAttrComponents}>
-					<Main />
-						{/* <NextScript /> */}
-				</body>
-			</Html>
-		)
+		if (isdev) {
+			return (
+				<Html {...this.helmetHtmlAttrComponents}>
+					<Head>{this.helmetHeadComponents}</Head>
+					<body {...this.helmetBodyAttrComponents}>
+						<Main />
+						<NextScript />
+					</body>
+				</Html>
+			)
+		} else {
+			// Note that we’re using a basic lowercase <head> tag instead of importing NextJS’s <Head> tag, which would prevent NextJS from injecting all sorts of interesting stuff while still allowing us to customize head tag in any pages we create. Also we’re omitting the <NextScript />.
+			return (
+				<html {...this.helmetHtmlAttrComponents}>
+					<head>{this.helmetHeadComponents}</head>
+					<body {...this.helmetBodyAttrComponents}>
+						<Main />
+					</body>
+				</html>
+			)
+		}
 	}
 }
